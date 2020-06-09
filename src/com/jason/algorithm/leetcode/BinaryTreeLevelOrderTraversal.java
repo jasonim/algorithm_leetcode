@@ -1,6 +1,7 @@
 package com.jason.algorithm.leetcode;
 
 import com.jason.algorithm.leetcode.base.TreeNode;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -12,32 +13,30 @@ import java.util.Queue;
  */
 public class BinaryTreeLevelOrderTraversal {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        if(root == null) {
-            return result;
+        ArrayList<List<Integer>> res = new ArrayList<>();
+        if(root == null)
+            return res;
+
+        LinkedList<Pair<TreeNode, Integer>> queue = new LinkedList<>();
+        queue.addLast(new Pair<>(root, 0));
+
+        while(!queue.isEmpty()){
+
+            Pair<TreeNode, Integer> front = queue.removeFirst();
+            TreeNode node = front.getKey();
+            int level = front.getValue();
+
+            if(level == res.size())
+                res.add(new ArrayList<Integer>());
+            assert level < res.size();
+
+            res.get(level).add(node.val);
+            if(node.left != null)
+                queue.addLast(new Pair<>(node.left, level + 1));
+            if(node.right != null)
+                queue.addLast(new Pair<>(node.right, level + 1));
         }
-        Queue<TreeNode> level = new LinkedList<>();
-        List<Integer> levelByLevel = new ArrayList<>();
-        level.add(root);
-        while(!level.isEmpty()) {
-            TreeNode temp = level.poll();
-            if(temp == null) {
-                result.add(levelByLevel);
-                levelByLevel = new ArrayList<>();
-                if(level.isEmpty()) {
-                    break;
-                }
-                level.offer(null);
-                continue;
-            }
-            levelByLevel.add(temp.val);
-            if(temp.left != null) {
-                level.offer(temp.left);
-            }
-            if(temp.right != null) {
-                level.offer(temp.right);
-            }
-        }
-        return result;
+
+        return res;
     }
 }
