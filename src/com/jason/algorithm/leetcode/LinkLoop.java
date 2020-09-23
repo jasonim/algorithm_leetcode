@@ -30,6 +30,31 @@ public class LinkLoop {
 
         return true;
     }
+    
+     public static boolean hasLoop1(ListNode head){
+        if (head == null) {
+            return false;
+        }
+         if (head.next == null) {
+            return false;
+         }
+         
+         ListNode slow = head;
+         listNode fast = head.next;
+         while (slow != fast) {
+            if (fast.next == null) {
+                return false;
+            }
+            if (fast.next.next == null) {
+                return false;
+            }
+            
+            fast = fast.next.next;
+            slow = slow.next;
+         }
+         
+         return true;
+     }
 
 //    //方法2：将每次走过的节点保存到hash表中，如果节点在hash表中，则表示存在环
 //    public static boolean hasLoop2(ListNode n){
