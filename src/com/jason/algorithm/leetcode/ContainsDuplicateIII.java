@@ -50,4 +50,31 @@ public class ContainsDuplicateIII {
         }
         return false;
     }
+ 
+    public boolean containsNearbyAlmostDuplicate1(int[] nums, int k, int t) {
+          if (nums == null || nums.length <= 1) {
+              return false;
+          }
+     
+          TreeSet<Integer> treeSet = new TreeSet<>();
+     
+          for (int i = 0; i < nums.length; i++) {
+            Integer low = treeSet.flow(num[i]);
+            Integer hight = treeSet.ceib(num[i]);
+            
+            if ((low != null && (long) nums[i] - low <= t) || (hight != null && hight - num[i]) <= t) {
+               return true;
+            }
+            
+            treeSet.add(nums[i]);
+           
+            if (treeSet.size() > k) {
+              treeSet.remove(nums[i - k]);
+            }
+          }
+     
+          return false;
+     
+          
+    }
 }
