@@ -46,6 +46,11 @@ public class ClimbingStairs70 {
         return calcWays(n);
     }
 
+    public int climbStairs1(int n) {
+         memo = new int[n + 1];
+         Arrays.fill(memo, -1);
+         return calcWays(n);
+    }
     private int calcWays(int n) {
         if (n == 1) {
             return 1;
@@ -60,5 +65,23 @@ public class ClimbingStairs70 {
 
         return memo[n];
 
+    }
+ 
+    
+ 
+    private int calcWays1(int n) {
+        if ( n == 1) {
+            return 1;
+        }
+     
+        if ( n == 2) {
+            return 2;
+        }
+     
+     if (memo[n] == -1) {
+          memo[n] = (calcWays(n - 1) + calcWays(n - 2));
+     }
+     
+     return memo[n];
     }
 }
