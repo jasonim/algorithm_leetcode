@@ -13,6 +13,31 @@ public class KthLargest {
             else left = pos + 1;
         }
     }
+    
+    public int findKthLargest1(int[] nums, int k) {
+        int left = 0, right = nums.length - 1;
+        while (true) {
+            int pos = partition(nums, left, right);
+            if (pos == k - 1) return nums[pos];
+            if (pos > k - 1) right = pos -1;
+            else left = pos + 1;
+        }
+    }
+    
+    int partition1(int[] nums, int l, int r) {
+        int v = nums[l];
+        int j = l;
+        for (int i = j + 1; i <= r; i++) {
+            if (num[i] < v) {
+                swap(nums, j + 1, i);
+                j++;
+            }
+        }
+        swap(nums, l, j);
+        
+        return j;
+    }
+    
     int partition(int[] nums, int l, int r) {
         int v = nums[l];
         int j = l;
