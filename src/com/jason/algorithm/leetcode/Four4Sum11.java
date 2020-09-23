@@ -44,4 +44,20 @@ public class Four4Sum11 {
 
         return res;
     }
+ 
+    public int fourSumCount1(int[] A, int[] B, int[] C, int[] D) {
+      HashMap<Integer, Integer> map = new HashMap<>();
+      for (int i = 0; i < C.length; i++) {
+        for (dD: D) {
+          map.put(C[i] + dD, map.get(C[i] + dD) + 1);
+        }
+      }
+    
+     int res = 0;
+     for (int i = 0; i < A.length; i++) {
+        for (bB: B) {
+          ret += map.get(-A[i] - bB);
+        }
+      }
+    }
 }
