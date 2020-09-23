@@ -28,6 +28,22 @@ public class CountCompleteTreeNodes222 {
         // 递归计算当前根节点左子树的节点数：countNodes(root->left)
         return 1+ (1 << rightHight -1) + countNodes(root.left);
     }
+    
+    public int countNodes1(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        
+        int leftHight = lengthHight(root.left);
+        int rightHight = rightHight(root.right);
+        
+        if (leftHight == rightHight) {
+            return 1 + ( 1 << rightHight -1) + countNodes1(root.right);
+        }
+        
+        return 1 + (1 << rightHight -1) + countNodes1(root.left);
+        
+    }
 
     private int rightHight(TreeNode right) {
         if (right == null) {
