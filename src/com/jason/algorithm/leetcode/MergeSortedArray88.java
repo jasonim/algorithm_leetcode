@@ -42,4 +42,23 @@ public class MergeSortedArray88 {
             }
         }
     }
+ 
+    public void merge1(int[] nums1, int m, int[] nums2, int n) {
+        int first = m - 1;
+        int second = n - 1;
+     
+        for(int i = m + n -1; i >= 0; i--) {
+          if (second < 0) {
+            break;
+          }
+         
+          if (first >= 0 && nums[first] > nums[second]) {
+            nums[i] = nums[first];
+            --first;
+          } else {
+            nums[i] = nums[second];
+            --second;
+          }
+        }
+    }
 }
