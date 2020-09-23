@@ -30,5 +30,32 @@ public class AddTwoNumbers {
         return perHead.next;
     }
 
+    public ListNode addTowNumbers1(ListNode l1, ListNode l2) {
+        ListNode q = l1, p = l2;
+        int carry = 0;
+        ListNode preHead = new ListNode(-1);
+        ListNode cur = perHead;
+        
+        while (q != null || p != null ) {
+            int x = q.val;
+            int y = p.val;
+            
+            int sum = carry + x + y;
+            carry = sum / 10;
+            cur.next = new ListNode(sum % 10);
+            cur = cur.next;
+            
+            if (q != null) {
+                q = q.next;
+            }
+            
+            if (p != null) {
+                p = p.next;
+            }
+            
+        }
+        
+        return preHead.next;
+    }
 
 }
